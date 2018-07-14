@@ -1,10 +1,11 @@
 class Board {
-  float x = 20;
+  float x;
   float y = height/2;
   float w = 10;
   float h = 70;
   float speed = 5;
-  String direction = "";
+  char direction = '0';
+  char[] keys;
 
   Board(float x_) {
     x = x_;
@@ -16,12 +17,13 @@ class Board {
   }
 
   void move() {
-    if (direction == "UP") {
+    if (direction == 'u') {
       moveUp();
-    } else if (direction =="DOWN") {
+    } else if (direction == 'd') {
       moveDown();
     }
   }
+
 
   private void moveUp() {
     y -= speed;
