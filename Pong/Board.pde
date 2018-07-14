@@ -5,7 +5,6 @@ class Board {
   float h = 70;
   float speed = 5;
   char direction = '0';
-  char[] keys;
 
   Board(float x_) {
     x = x_;
@@ -24,6 +23,10 @@ class Board {
     }
   }
 
+  void deflect(Ball ball) {
+    ball.ySpeed = map(ball.y, y, y+h, -5, 5);
+    ball.xSpeed *= -1;
+  }
 
   private void moveUp() {
     y -= speed;
