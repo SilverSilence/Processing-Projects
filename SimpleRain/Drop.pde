@@ -32,6 +32,6 @@ class Drop {
       thickness = map(z,0,20,3,1);
       len = map(z,0,20,20,10);
       y = random(-200, -100);
-      x = random(800);
+      x = random(width);
   }
 }
