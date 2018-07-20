@@ -1,15 +1,15 @@
-function Drop() {
-    var x, y, z, len;
-    var gravity, speed;
-    var thickness;
-
-    this.display = function() {
+class Drop {
+    constructor() {
+        this.reset();
+    }
+    
+    display() {
         stroke(255);
         strokeWeight(this.thickness);
         line(this.x, this.y, this.x, this.y + this.len);
     }
 
-    this.fall = function() {
+    fall() {
         this.y += this.speed;
         this.speed += this.gravity;
         if (this.y > height) {
@@ -17,7 +17,7 @@ function Drop() {
         }
     }
 
-    this.reset = function() {
+    reset() {
         this.z = random(20); //0 close, 20 far
         this.gravity = map(this.z, 0, 20, 0.05, 0);
         this.speed = map(this.z, 0, 20, 15, 5);
