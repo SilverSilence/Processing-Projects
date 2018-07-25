@@ -1,11 +1,12 @@
 class Slider {
-    constructor(x_) {
-        this.x = x_;
+    constructor(x, upKey, downKey) {
+        this.upKey = upKey;
+        this.downKey = downKey;
+        this.x = x;
         this.y = height / 2;
         this.w = 10;
         this.h = 70;
         this.speed = 5;
-        this.direction = '0';
     }
 
     display() {
@@ -14,9 +15,9 @@ class Slider {
     }
 
     move() {
-        if (this.direction == 'u') {
+        if (keyIsDown(this.upKey)) {
             this.moveUp();
-        } else if (this.direction == 'd') {
+        } else if (keyIsDown(this.downKey)) {
             this.moveDown();
         }
     }

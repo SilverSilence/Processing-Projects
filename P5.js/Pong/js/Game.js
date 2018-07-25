@@ -1,11 +1,13 @@
 var p1, p2;
 var ball;
+var wallOffset;
 
 function setup() {
+    wallOffset = 20;
     var gameBoard = createCanvas(700, 500);
     gameBoard.parent("GameField");
-    p1 = new Slider(20);
-    p2 = new Slider(width - 20 - p1.w);
+    p1 = new Slider(wallOffset, 87, 83); //w & s
+    p2 = new Slider(width - wallOffset - p1.w, 73, 75); //i & k
     ball = new Ball();
     frameRate(60);
 }
@@ -21,13 +23,7 @@ function draw() {
     ball.display();
 }
 
-function keyPressed() {
-    setDirection(key, true);
-}
 
-function keyReleased() {
-    setDirection(key, false);
-}
 
 function detectCollision() {
     var rightEdge = p1.x + p1.w; //right edge of left player
@@ -40,39 +36,5 @@ function detectCollision() {
     } else if (ballRightReach >= leftEdge && ball.y >= p2.y && ball.y <= p2.y + p2.h) { //hits right board
         ball.x = leftEdge - ball.radius;
         p2.deflect(ball);
-    }
-}
-
-function setDirection(keyC, isMoving) {
-    if (isMoving) {
-        switch (keyC.toLowerCase()) {
-            case 'w':
-                p1.direction = 'u';
-                break;
-            case 's':
-                p1.direction = 'd';
-                break;
-            case 'i':
-                p2.direction = 'u';
-                break;
-            case 'k':
-                p2.direction = 'd';
-                break;
-        }
-    } else {
-        switch (keyC.toLocaleLowerCase()) {
-            case 'w':
-                p1.direction = '0';
-                break;
-            case 's':
-                p1.direction = '0';
-                break;
-            case 'i':
-                p2.direction = '0';
-                break;
-            case 'k':
-                p2.direction = '0';
-                break;
-        }
     }
 }
