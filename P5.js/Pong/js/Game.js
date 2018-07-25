@@ -17,24 +17,9 @@ function draw() {
     p1.move();
     p2.move();
     ball.move();
-    detectCollision();
+    ball.detectCollision(p1);
+    ball.detectCollision(p2);
     p1.display();
     p2.display();
     ball.display();
-}
-
-
-
-function detectCollision() {
-    var rightEdge = p1.x + p1.w; //right edge of left player
-    var leftEdge = p2.x; //left edge of right player
-    var ballLeftReach = ball.x - ball.radius;
-    var ballRightReach = ball.x + ball.radius;
-    if (ballLeftReach <= rightEdge && ball.y >= p1.y && ball.y <= p1.y + p1.h) { //hits left board
-        ball.x = rightEdge + ball.radius;
-        p1.deflect(ball);
-    } else if (ballRightReach >= leftEdge && ball.y >= p2.y && ball.y <= p2.y + p2.h) { //hits right board
-        ball.x = leftEdge - ball.radius;
-        p2.deflect(ball);
-    }
 }
